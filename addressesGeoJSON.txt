@@ -1,0 +1,607 @@
+facilities index<style type="text/css">
+    body p {color:black;
+		font-size:18px;
+		line-height:130%;
+		font-weight:300;}
+    
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
+body {max-width:1200px;
+		margin-right:auto;
+		margin-left:auto;
+		overflow-x:hidden;}
+		
+.container-fluid {padding-left:3%;
+		padding-right:3%;}
+		
+body a {font-weight:600;
+		color:#4C7DAE;}
+
+header ul {margin-left:auto;
+			margin-right:auto;}
+
+header li a {color:#808080;
+				font-weight:400;
+				font-family:'Georgia';
+				font-size:16;}
+
+section {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+h1 {text-align:center;
+	font-weight:500;
+	font-family: "Arial";
+	font-size:4.5em;
+	line-height:90%;
+	margin-top:1%;}
+	
+@media screen and (min-width:331px) and (max-width:410px)
+{h1 {font-size:3.5em;}}
+
+@media screen and (max-width:330px)
+{h1 {font-size:2.5em;}}
+
+footer p {font-size:14px;}
+
+#deck {font-family:"Arial";
+		font-size:1.3em;}
+
+#dropdown {font-family:"Arial";}
+</style>
+<?php
+/* @var $this BASEController */
+/* @var $model BASE 
+*/
+
+Yii::app()->clientScript->registerScript('search', "
+$('.search-button').click(function(){
+	$('.search-form').toggle();
+	return false;
+});
+$('.search-form form').submit(function(){
+	$('#buildtest-grid').yiiGridView('update', {
+		data: $(this).serialize()
+	});
+	return false;
+});
+");
+
+?>
+
+<h1>Toxic releases in Hawaii</h1>
+
+<p>
+Search toxic releases in Hawaii 2004-2013.
+ <div id="map" style="width:100%; height:450px;"></div>
+</p>
+<?php include "searches.php";
+?>
+</div><!-- search-form -->
+
+<?php $this->widget('zii.widgets.grid.CGridView', array(
+	'id'=>'Facilities-grid',
+	'dataProvider'=>$model->search(),
+	//'filter'=>$model,
+	'columns'=>array(
+'Year',
+'name',
+'totalReleases',
+'onSiteTotal',
+'offSiteTotal',
+            array(
+		'header' =>'Details',
+        'class'    => 'CButtonColumn',
+        'template' => '{view}'),))); ?>
+        <script type="text/javascript">
+            var map = L.map('map').setView([20.827574, -156.921912], 7);
+            var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+                maxZoom: 18,
+                attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
+                subdomains: ['otile1','otile2','otile3','otile4']
+            });    
+            map.addLayer(mapquestLayer);
+            var data = {
+              "type": "FeatureCollection",
+              "features": [
+                
+                {
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "PORT ALLEN GENERATING STATION",
+                    "id": "96705KLCTR4392W"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-159.583667, 21.89975]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "US MARINE CORPS BASE HAWAII PUULOA TRAINING FACILITY",
+                    "id": "96706SMRNC1PUUL"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-157.988312, 21.317542]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "BEI HAWAII  - BARBERS POINT",
+                    "id": "96707BRWRN91291"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-158.105, 21.301389]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "CHEVRON PRODUCTS CO - HAWAII REFINERY",
+                    "id": "96707CHVRN91480"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-158.111997, 21.309854]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "HONOLULU WOOD TREATING LLC",
+                    "id": "96707HNLLW91291"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-158.10339, 21.310595]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "HAWAII INDEPENDENT ENERGY LLC",
+                    "id": "96707HWNND91325"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-158.0937, 21.304371]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "KALAELOA COGEN PLANT",
+                    "id": "96707KLLCG91111"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-158.09729, 21.301355]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "REFRIGERANT RECYCLING INC AKA ISLAND DISTRIBUTORS",
+                    "id": "96707RFRGR9122K"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-158.093615, 21.311415]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "BALL METAL BEVERAGE CONTAINER CORP",
+                    "id": "96707RYNLD91320"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-158.093615, 21.311415]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "AES HAWAII INC",
+                    "id": "96707SHWNC91086"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-158.108056, 21.306111]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "ALOHA PETROLEUM BARBERS POINT TERMINAL",
+                    "id": "96707TXCBR91119"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-158.10339, 21.310595]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "HAWAIIAN ELECTRIC CAMPBELL INDUSTRIAL PARK GENERATING STA",
+                    "id": "9670WHCCMP91196"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-158.10339, 21.310595]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "U.S. NATL PARK SERVICE HAWAII VOLCANOES NATIONAL PARK",
+                    "id": "96718SNTLP1CRAT"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-155.25972, 19.4325]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "HAWAII ELECTRIC LIGHT CO INC HILL GENERATING STATION",
+                    "id": "96720HLLGN54HAL"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-155.06314, 19.70467]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "CHEVRON HILO TERMINAL",
+                    "id": "96720HLTRM666KA"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-155.054726, 19.727319]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "ALOHA PETROLEUM HILO  EAST TERMINAL",
+                    "id": "96720LHPTR999KA"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-155.049511, 19.729701]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "HAWAII ELECTRIC LIGHT CO INC SHIPMAN GENERATING STATION",
+                    "id": "96720SHPMN20BAY"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-155.06946, 19.72452]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "US ARMY POHAKULOA TRAINING AREA - RANGE FACILITY",
+                    "id": "96720SRMYPSADDL"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-155.53334, 19.666668]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "HAMAKUA ENERGY PLANT",
+                    "id": "96727HMKNR45300"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-155.471028, 20.094083]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "CHEVRON KAHULUI TERMINAL",
+                    "id": "96732CHVRN1AHBR"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-156.4622, 20.89367]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "MAUI ELECTRIC CO LTD KAHULUI GENERATING STATION",
+                    "id": "96732KHLGN200HO"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-156.46367, 20.89618]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "MAUI PINEAPPLE CO LTD.",
+                    "id": "96732MPNPP120KA"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-156.46885, 20.88624]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "HAWAII ELECTRIC LIGHT CO INC   KEAHOLE GENERATING STATION",
+                    "id": "96740HWNLC73424"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-156.032477, 19.720815]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "WAIMEA GENERATING STATION & BASEYARD",
+                    "id": "96743HWNLC66159"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-155.699865, 20.02651]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "MAUI ELECTRIC CO LTD PALAAU GENERATING STATION",
+                    "id": "96748MLCTR32AUL"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-157.06419, 21.105933]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "HAWAII ELECTRIC LIGHT CO INC PUNA GENERATING STATION",
+                    "id": "96749PNGNRPUNAM"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-155.03169, 19.631375]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "U.S. NAVY PACIFIC MISSILE RANGE FACILITY",
+                    "id": "96752SNVYPKAUMU"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-159.7875, 22.03444]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "MAUI ELECTRIC CO LTD MIKI BASIN GENERATING STATION",
+                    "id": "96763MLCTR1001N"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-156.9336, 20.78985]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "KAPAIA POWER STATION",
+                    "id": "96766KPWRP4941K"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-159.382044, 22.028199]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "HAWAIIAN ELECTRIC CO INC WAIAU GENERATING STATION",
+                    "id": "96782WGNRT475KA"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-157.961453, 21.390206]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "HILO COAST POWER CO",
+                    "id": "96783HLCSTMILLV"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-155.089722, 19.8475]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "HAWAIIAN ELECTRIC CO INC KAHE GENERATING STATION",
+                    "id": "96792KHGNR89900"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-158.125764, 21.355052]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "U.S. ARMY MAKUA MILITARY RESERVATION",
+                    "id": "96792SRMYMFARRI"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-158.2, 21.533333]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "BEI HAWAII MAUI MAIN WAREHOUSE",
+                    "id": "96793BRWRN275EW"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-156.497222, 20.852222]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "MAUI ELECTRIC CO LTD MAALAEA GENERATING STATION",
+                    "id": "96793MLGNRNKIHE"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-156.49269, 20.801363]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "HAWAIIAN ELECTRIC CO INC HONOLULU GENERATING STATION",
+                    "id": "96813HNLLG170AL"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-157.864111, 21.305722]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "SOUTHERN FOODS GROUP LLC D/B/A MEADOW GOLD DAIRIES",
+                    "id": "96814BRDNN910SH"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-157.84134, 21.29777]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "BEI HAWAII  - IWILEI",
+                    "id": "96817BRWRC311PA"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-157.87147, 21.31481]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "CHEVRON HONOLULU TERMINAL MARI NE",
+                    "id": "96817HNLLM777NN"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-157.87218, 21.31321]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "CHEVRON HONOLULU TERMINAL TRAN SPORTATION",
+                    "id": "96817HNLLT933NN"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-157.87523, 21.31677]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "ALOHA PETROLEUM HONOLULU TERMINAL",
+                    "id": "96817QLNHN789NN"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-157.872694, 21.313366]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "CONOCOPHILLIPS CO HONOLULU TERMINAL",
+                    "id": "96817TSCDS411PA"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-157.87205, 21.31601]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "HFFC AIRPORT FUEL FARM",
+                    "id": "96819HFFCR321AL"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-157.91331, 21.33324]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "PLAS-TECH LIMITED",
+                    "id": "96819PLSTC317KI"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-157.8751, 21.30433]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "U.S. AIR FORCE HICKAM AFB HI",
+                    "id": "96853SRFRCBLDG1"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-157.932777, 21.333611]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "US ARMY SCHOFIELD BARRACKS - RANGE FACILITY",
+                    "id": "96857SDDSRWHEEL"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-158.03013, 21.49069]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "JOINT BASE PEARL HARBOR-HICKAM HAWAII",
+                    "id": "96860PRLHR850TI"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-157.98333, 21.38888]
+                  }
+                },{
+                  "type": "Feature",
+                  "properties": {
+                    "displayer": "US MARINE CORPS BASE HAWAII",
+                    "id": "96863SMRNCMAGAZ"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [-157.758472, 21.438639]
+                  }
+                }
+
+                
+              ]
+            };
+                        var dataLayer = L.geoJson(data, {
+                onEachFeature: function(feature, layer) {
+                    layer.bindPopup(feature.properties.displayer);
+                }
+            });  
+			map.addLayer(dataLayer);
+        </script>
+        
